@@ -261,6 +261,7 @@ def build(sources_path: Path, out_dir: Path, workers: int, min_channels: int) ->
         json.dumps(manifest, ensure_ascii=False, indent=1), encoding="utf-8"
     )
     (out_dir / ".nojekyll").write_text("", encoding="utf-8")
+    (out_dir / "index.html").write_text(render_html(manifest), encoding="utf-8")
 
     total = sum(m["channels"] for m in countries_meta.values())
     raw = sum(m["bytes"] for m in countries_meta.values())
@@ -271,6 +272,48 @@ def build(sources_path: Path, out_dir: Path, workers: int, min_channels: int) ->
         f"{raw / 1024:.0f} KB raw / {gz / 1024:.0f} KB gzip, failed sources: {len(failed)}",
         flush=True,
     )
+
+
+def render_html(manifest: dict) -> str:
+    from html import escape
+
+    countries = manifest["countries"]
+    rows = "\n".join(
+        f'<tr><td><a href="{escape(m["file"])}">{escape(cc)}</a></td>'
+        f'<td class="n">{m["channels"]}</td><td class="n">{m["gzipBytes"] // 1024 or 1} KB</td></tr>'
+        for cc, m in sorted(countries.items(), key=lambda kv: -kv[1]["channels"])
+    )
+    src_rows = "\n".join(
+        f'<tr><td>{escape(s["provider"])}</td><td><a href="{escape(s["url"])}">{escape(s["url"].rsplit("/", 1)[-1])}</a></td>'
+        f'<td>{escape(s.get("country") or "")}</td><td class="n">{s["channels"]}</td>'
+        f'<td class="err">{escape(s.get("error", ""))}</td></tr>'
+        for s in manifest["sources"]
+    )
+    total = sum(m["channels"] for m in countries.values())
+    return f"""<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>epg-index</title>
+<style>
+body{{font:14px/1.45 system-ui,sans-serif;margin:2rem auto;max-width:960px;padding:0 1rem;color:#222}}
+table{{border-collapse:collapse;margin:.5rem 0 2rem}}td,th{{padding:.2rem .7rem;border-bottom:1px solid #eee;text-align:left}}
+.n{{text-align:right;font-variant-numeric:tabular-nums}}.err{{color:#b00}}code{{background:#f4f4f4;padding:0 .3rem}}
+</style></head><body>
+<h1>epg-index</h1>
+<p>Per-country channel index for public XMLTV guides. Generated <b>{escape(manifest["generated"])}</b>:
+{len(countries)} countries, {total} channels, {len(manifest["sources"])} guide files.</p>
+<p>Machine entry point: <a href="index/manifest.json"><code>index/manifest.json</code></a> ·
+source: <a href="https://github.com/ishumakov881/epg-index">github.com/ishumakov881/epg-index</a></p>
+<h2>Countries</h2>
+<table><tr><th>Country</th><th class="n">Channels</th><th class="n">gzip</th></tr>
+{rows}
+</table>
+<h2>Sources</h2>
+<table><tr><th>Provider</th><th>File</th><th>Country</th><th class="n">Channels</th><th>Error</th></tr>
+{src_rows}
+</table>
+</body></html>
+"""
 
 
 def main(argv: list[str]) -> int:
