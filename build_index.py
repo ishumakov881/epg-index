@@ -219,6 +219,9 @@ def build(sources_path: Path, out_dir: Path, workers: int, min_channels: int) ->
     index_dir = out_dir / "index"
     index_dir.mkdir(parents=True, exist_ok=True)
 
+    # Before the per-country loop: it rewrites rec["s"] to country-local indexes.
+    ids_meta = write_global_ids(by_country, results, index_dir, generated)
+
     countries_meta = {}
     for cc in sorted(by_country):
         records = sorted(by_country[cc].values(), key=lambda r: r["id"].lower())
@@ -245,6 +248,7 @@ def build(sources_path: Path, out_dir: Path, workers: int, min_channels: int) ->
     manifest = {
         "version": 1,
         "generated": generated,
+        "ids": ids_meta,
         "countries": countries_meta,
         "sources": [
             {
@@ -272,6 +276,40 @@ def build(sources_path: Path, out_dir: Path, workers: int, min_channels: int) ->
         f"{raw / 1024:.0f} KB raw / {gz / 1024:.0f} KB gzip, failed sources: {len(failed)}",
         flush=True,
     )
+
+
+def id_key(raw: str | None) -> str | None:
+    """Same rule as the app's EpgKey.normalize: lowercase, drop `@feed`, letters/digits only."""
+    base = (raw or "").split("@", 1)[0].strip().lower()
+    key = "".join(ch for ch in base if ch.isalnum())
+    return key or None
+
+
+def write_global_ids(by_country: dict, results: list, index_dir: Path, generated: str) -> dict:
+    """index/ids.json: normalized tvg-id / alias -> [guide channel id, [source indexes]].
+
+    A playlist `tvg-id` is global, so the app resolves any list (country, category, custom)
+    with one dictionary lookup — no country detection needed.
+    """
+    used = sorted({gi for bucket in by_country.values() for rec in bucket.values() for gi in rec["s"]})
+    local = {gi: li for li, gi in enumerate(used)}
+    ids: dict[str, list] = {}
+    for bucket in by_country.values():
+        for rec in bucket.values():
+            value = [rec["id"], [local[gi] for gi in rec["s"]]]
+            for raw in [rec["id"], *rec.get("a", ())]:
+                k = id_key(raw)
+                if k and k not in ids:
+                    ids[k] = value
+    payload = {
+        "version": 1,
+        "generated": generated,
+        "sources": [{"p": results[gi].source.provider, "u": results[gi].source.url} for gi in used],
+        "ids": dict(sorted(ids.items())),
+    }
+    data = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+    (index_dir / "ids.json").write_bytes(data)
+    return {"file": "index/ids.json", "keys": len(ids), "bytes": len(data), "gzipBytes": len(gzip.compress(data))}
 
 
 def render_html(manifest: dict) -> str:

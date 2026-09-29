@@ -21,7 +21,27 @@ Manual rebuild: Actions → build-index → Run workflow, or push a tag `build-<
 
 ## Format
 
-`index/<cc>.json`
+### `index/ids.json` — main lookup (any playlist, no country needed)
+
+`tvg-id` is a global id, so one dictionary lookup resolves channels from any list —
+country lists, categories, `index.m3u`, custom ones.
+
+```json
+{
+  "version": 1,
+  "generated": "…",
+  "sources": [{"p": "epgshare01", "u": "https://…/epg_ripper_ES1.xml.gz"}, …],
+  "ids": {
+    "3catinfoes": ["3CatInfo.es", [12, 105]],
+    "plutotvthrillersde": ["5dcddf1ed95e740009fef7ab", [101]]
+  }
+}
+```
+
+Key = normalized `tvg-id` or iptv-org alias (lowercase, drop `@feed`, letters/digits only).
+Value = channel id inside the guide file + indexes into `sources`.
+
+### `index/<cc>.json` — per-country details (names, icons) for name-based fallback
 
 ```json
 {
@@ -52,14 +72,10 @@ otherwise `intl` (FAST services with hash ids: Pluto TV, Samsung TV Plus, Plex, 
 
 ## Matching on the device
 
-For each playlist channel (country from `tvg-id` suffix, `tvg-country`, or user locale; always
-also `intl`):
-
-1. **id** — normalized `tvg-id` equals normalized guide `id`
-   (lowercase, drop `@feed` suffix, keep letters/digits only).
-2. **name** — normalized channel name equals a normalized `display-name`
-   (accents folded, `(…)`/`[…]` and quality tokens like `HD`, `720p` removed, letters/digits only).
-3. **tokens** — all name tokens are contained in exactly one guide `display-name`.
+1. **id** — look up normalized `tvg-id` in `ids.json`. Exact, global.
+2. **name** (only for channels without a usable `tvg-id`) — normalized channel name equals a
+   normalized `display-name` (accents folded, `(…)`/`[…]` and quality tokens like `HD`, `720p`
+   removed, letters/digits only); accepted only when unambiguous.
 
 Then download only the `sources` of matched channels and keep only their programmes.
 
