@@ -4,12 +4,14 @@ Per-country **channel index** for public XMLTV guides: which guide file carries 
 under which id and names. It is *not* a programme guide — the app downloads only the XMLTV files
 it needs and parses programmes itself.
 
-Rebuilt weekly by GitHub Actions and published to GitHub Pages:
+Rebuilt weekly by GitHub Actions and force-pushed as a single commit to the `data` branch:
 
 ```
-https://ishumakov881.github.io/epg-index/index/manifest.json
-https://ishumakov881.github.io/epg-index/index/<cc>.json      # es, de, uk, us, ..., intl
+https://raw.githubusercontent.com/ishumakov881/epg-index/data/index/manifest.json
+https://raw.githubusercontent.com/ishumakov881/epg-index/data/index/<cc>.json   # es, de, uk, us, ..., intl
 ```
+
+Manual rebuild: Actions → build-index → Run workflow, or push a tag `build-<anything>`.
 
 ## Format
 
