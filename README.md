@@ -55,7 +55,10 @@ Normalization (`epgkeys.py`, must be identical in the app):
 
 `names` contains only names that map to exactly one guide channel; ambiguous ones are dropped.
 
-Reference client: `python resolve.py playlist.m3u [--local dist]`. Tests: `python -m unittest discover -s tests`.
+Reference client: `python resolve.py playlist.m3u [--local dist]`. Tests (local only, not in CI):
+`python -m unittest discover -s tests`.
+
+App side: FireTv `:core:epg` — `EpgKey.kt` (same normalization and vectors), `index/EpgIndexClient.kt`.
 
 ## Format
 
