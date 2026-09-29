@@ -1,0 +1,31 @@
+{
+  "providers": [
+    {
+      "id": "epgshare01",
+      "listing": "https://epgshare01.online/epgshare01/",
+      "pattern": "href=\"(epg_ripper_[^\"]+\\.xml\\.gz)\"",
+      "base": "https://epgshare01.online/epgshare01/",
+      "exclude": ["epg_ripper_ALL_SOURCES1.xml.gz", "epg_ripper_DUMMY_CHANNELS.xml.gz"],
+      "channels_first": true,
+      "country_from_file": "^epg_ripper_([A-Z]{2})\\d+\\.xml\\.gz$"
+    },
+    {
+      "id": "mjh",
+      "files": [
+        "https://i.mjh.nz/PlutoTV/all.xml.gz",
+        "https://i.mjh.nz/SamsungTVPlus/all.xml.gz",
+        "https://i.mjh.nz/Plex/all.xml.gz",
+        "https://i.mjh.nz/Roku/all.xml.gz"
+      ]
+    },
+    {
+      "id": "open-epg",
+      "files": [
+        "https://www.open-epg.com/files/spain1.xml.gz"
+      ],
+      "country": {
+        "https://www.open-epg.com/files/spain1.xml.gz": "es"
+      }
+    }
+  ]
+}
