@@ -9,7 +9,8 @@ on:
     tags: ["build-*"]
     paths:
       - sources.json
-      - build_index.py
+      - "*.py"
+      - tests/**
       - .github/workflows/build.yml
 
 permissions:
@@ -32,6 +33,14 @@ jobs:
           python-version: "3.12"
       - name: Build index
         run: python build_index.py --out dist
+      - name: Test API contract and scenarios
+        run: python -m unittest discover -s tests -v
+      - name: Real playlists (reference client)
+        run: |
+          for list in countries/es categories/news index; do
+            curl -fsSL "https://iptv-org.github.io/iptv/${list}.m3u" -o /tmp/p.m3u
+            echo "== ${list}: $(python resolve.py /tmp/p.m3u --local dist)"
+          done
       - uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v5
         with:

@@ -22,6 +22,8 @@ from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from epgkeys import SHARDS, id_key, name_key, shard_of
+
 USER_AGENT = "epg-index/1.0 (+https://github.com/ishumakov881/epg-index)"
 TIMEOUT = 60
 RETRIES = 2
@@ -220,7 +222,7 @@ def build(sources_path: Path, out_dir: Path, workers: int, min_channels: int) ->
     index_dir.mkdir(parents=True, exist_ok=True)
 
     # Before the per-country loop: it rewrites rec["s"] to country-local indexes.
-    ids_meta = write_global_ids(by_country, results, index_dir, generated)
+    ids_meta = write_lookup_api(by_country, results, index_dir, generated)
 
     countries_meta = {}
     for cc in sorted(by_country):
@@ -278,38 +280,90 @@ def build(sources_path: Path, out_dir: Path, workers: int, min_channels: int) ->
     )
 
 
-def id_key(raw: str | None) -> str | None:
-    """Same rule as the app's EpgKey.normalize: lowercase, drop `@feed`, letters/digits only."""
-    base = (raw or "").split("@", 1)[0].strip().lower()
-    key = "".join(ch for ch in base if ch.isalnum())
-    return key or None
+def _dump(path: Path, payload: dict) -> tuple[int, int]:
+    data = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(data)
+    return len(data), len(gzip.compress(data))
 
 
-def write_global_ids(by_country: dict, results: list, index_dir: Path, generated: str) -> dict:
-    """index/ids.json: normalized tvg-id / alias -> [guide channel id, [source indexes]].
+def write_lookup_api(by_country: dict, results: list, index_dir: Path, generated: str) -> dict:
+    """Static lookup API (see README "Client contract").
 
-    A playlist `tvg-id` is global, so the app resolves any list (country, category, custom)
-    with one dictionary lookup — no country detection needed.
+    index/api.json          entry point: shard count, path templates, global source list
+    index/ids.json          full id map (for big playlists)
+    index/ids/NN.json       id map sharded by crc32(key) % SHARDS
+    index/names/NN.json     unambiguous name map, same sharding (lists without tvg-id)
+
+    Value = [guide channel id, [source indexes], icon?].
     """
     used = sorted({gi for bucket in by_country.values() for rec in bucket.values() for gi in rec["s"]})
     local = {gi: li for li, gi in enumerate(used)}
+    sources = [{"p": results[gi].source.provider, "u": results[gi].source.url} for gi in used]
+
     ids: dict[str, list] = {}
+    names: dict[str, list] = {}
+    ambiguous: set[str] = set()
     for bucket in by_country.values():
         for rec in bucket.values():
             value = [rec["id"], [local[gi] for gi in rec["s"]]]
+            if rec.get("i"):
+                value.append(rec["i"])
             for raw in [rec["id"], *rec.get("a", ())]:
                 k = id_key(raw)
                 if k and k not in ids:
                     ids[k] = value
-    payload = {
-        "version": 1,
+            for n in rec["n"]:
+                nk = name_key(n)
+                if not nk or nk in ambiguous:
+                    continue
+                prev = names.get(nk)
+                if prev is None:
+                    names[nk] = value
+                elif prev[0] != value[0]:
+                    ambiguous.add(nk)
+                    del names[nk]
+
+    meta: dict = {"shards": SHARDS}
+    raw, gz = _dump(index_dir / "ids.json", {"version": 2, "generated": generated, "ids": dict(sorted(ids.items()))})
+    meta["ids"] = {"keys": len(ids), "bytes": raw, "gzipBytes": gz}
+    raw, gz = _dump(index_dir / "names.json", {"version": 2, "generated": generated, "names": dict(sorted(names.items()))})
+    meta["names"] = {"keys": len(names), "bytes": raw, "gzipBytes": gz}
+
+    for kind, table in (("ids", ids), ("names", names)):
+        shards: list[dict] = [{} for _ in range(SHARDS)]
+        for k, v in table.items():
+            shards[shard_of(k)][k] = v
+        sizes = []
+        for n, part in enumerate(shards):
+            _, g = _dump(index_dir / kind / f"{n:03d}.json",
+                         {"version": 2, "shard": n, kind: dict(sorted(part.items()))})
+            sizes.append(g)
+        meta[f"{kind}Shards"] = {
+            "keys": len(table),
+            "gzipMin": min(sizes), "gzipMax": max(sizes), "gzipTotal": sum(sizes),
+            "gzipAvg": sum(sizes) // len(sizes),
+        }
+    meta["namesAmbiguousDropped"] = len(ambiguous)
+
+    _dump(index_dir / "api.json", {
+        "version": 2,
         "generated": generated,
-        "sources": [{"p": results[gi].source.provider, "u": results[gi].source.url} for gi in used],
-        "ids": dict(sorted(ids.items())),
-    }
-    data = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
-    (index_dir / "ids.json").write_bytes(data)
-    return {"file": "index/ids.json", "keys": len(ids), "bytes": len(data), "gzipBytes": len(gzip.compress(data))}
+        "hash": "crc32-utf8",
+        "shards": SHARDS,
+        "idsFull": "index/ids.json",
+        "idsShard": "index/ids/{shard}.json",
+        "namesFull": "index/names.json",
+        "namesShard": "index/names/{shard}.json",
+        # Client, per table: full file when shardsNeeded * (shardAvg + requestCost) >= fullGzip.
+        "idsFullGzip": meta["ids"]["gzipBytes"],
+        "idsShardGzipAvg": meta["idsShards"]["gzipAvg"],
+        "namesFullGzip": meta["names"]["gzipBytes"],
+        "namesShardGzipAvg": meta["namesShards"]["gzipAvg"],
+        "requestCostBytes": 16384,
+        "sources": sources,
+    })
+    return meta
 
 
 def render_html(manifest: dict) -> str:

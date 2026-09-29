@@ -19,27 +19,64 @@ https://raw.githubusercontent.com/ishumakov881/epg-index/data/index/<file>
 
 Manual rebuild: Actions → build-index → Run workflow, or push a tag `build-<anything>`.
 
+## Client contract (lookup API)
+
+Entry point `index/api.json`:
+
+```json
+{
+  "version": 2, "hash": "crc32-utf8", "shards": 256,
+  "idsFull": "index/ids.json",     "idsShard": "index/ids/{shard}.json",
+  "namesFull": "index/names.json", "namesShard": "index/names/{shard}.json",
+  "idsFullGzip": 1062798, "idsShardGzipAvg": 6920,
+  "namesFullGzip": 456493, "namesShardGzipAvg": 3049,
+  "requestCostBytes": 16384,
+  "sources": [{"p": "epgshare01", "u": "https://…/epg_ripper_ES1.xml.gz"}, …]
+}
+```
+
+Per playlist:
+
+1. `id_key(tvg-id)` for every channel → `shard = CRC32(utf8(key)) % shards` (zero-padded to 3 digits
+   in paths). If `needed * (idsShardGzipAvg + requestCostBytes) >= idsFullGzip` fetch `idsFull`,
+   else only the needed shards.
+2. Channels not found by id: same with `name_key(name)` and the `names*` files.
+3. Value `[guideChannelId, [sourceIndex…], icon?]` → group channels by `sources[i].u`, download
+   only those XMLTV files, keep only programmes of `guideChannelId`.
+4. `icon` is used only when the playlist has no `tvg-logo`.
+
+Normalization (`epgkeys.py`, must be identical in the app):
+
+- `id_key`: text before `@`, trimmed, lowercased, letters/digits only. `BBCNews.uk@HD` → `bbcnewsuk`.
+- `name_key`: NFKD + strip accents, lowercase, remove `(…)`/`[…]`, remove whole-word quality tokens
+  (`hd fhd uhd sd 4k 8k hevc h264 h265 720p 1080i …`), letters/digits only.
+  `Canal Sur Andalucía (1080p) [Geo-blocked]` → `canalsurandalucia`.
+- Test vector: `CRC32("123456789") = 0xCBF43926` → shard 38.
+
+`names` contains only names that map to exactly one guide channel; ambiguous ones are dropped.
+
+Reference client: `python resolve.py playlist.m3u [--local dist]`. Tests: `python -m unittest discover -s tests`.
+
 ## Format
 
-### `index/ids.json` — main lookup (any playlist, no country needed)
+### `index/ids.json` — full id map (same content as all `index/ids/NNN.json` shards)
 
 `tvg-id` is a global id, so one dictionary lookup resolves channels from any list —
 country lists, categories, `index.m3u`, custom ones.
 
 ```json
 {
-  "version": 1,
+  "version": 2,
   "generated": "…",
-  "sources": [{"p": "epgshare01", "u": "https://…/epg_ripper_ES1.xml.gz"}, …],
   "ids": {
-    "3catinfoes": ["3CatInfo.es", [12, 105]],
+    "3catinfoes": ["3CatInfo.es", [12, 105], "https://…/449-square.jpg"],
     "plutotvthrillersde": ["5dcddf1ed95e740009fef7ab", [101]]
   }
 }
 ```
 
-Key = normalized `tvg-id` or iptv-org alias (lowercase, drop `@feed`, letters/digits only).
-Value = channel id inside the guide file + indexes into `sources`.
+Key = normalized `tvg-id` or iptv-org alias. Value = channel id inside the guide file, indexes into
+`api.json` `sources`, optional icon. `names.json` / `names/NNN.json` have the same value format.
 
 ### `index/<cc>.json` — per-country details (names, icons) for name-based fallback
 
