@@ -1,4 +1,7 @@
 {
+  "aliases": {
+    "iptv_org_guides": "https://iptv-org.github.io/api/guides.json"
+  },
   "providers": [
     {
       "id": "epgshare01",

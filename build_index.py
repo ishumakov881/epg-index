@@ -133,6 +133,30 @@ def read_channels(src: SourceFile) -> SourceResult:
     return SourceResult(src, [], error=last_error)
 
 
+def load_iptv_org_aliases(url: str | None) -> dict[str, set[str]]:
+    """Guide channel id -> iptv-org channel ids (their `tvg-id`), from guides.json `site_id` tails.
+
+    e.g. site_id `au/Adelaide/epg#mjh-7afl-fast` maps guide id `mjh-7afl-fast` to `7AFL.au`.
+    """
+    if not url:
+        return {}
+    try:
+        with http_open(url) as r:
+            guides = json.load(r)
+    except Exception as e:
+        print(f"aliases: skipped ({type(e).__name__}: {e})", flush=True)
+        return {}
+    out: dict[str, set[str]] = {}
+    for g in guides:
+        channel, site_id = g.get("channel"), g.get("site_id") or ""
+        if not channel or not site_id:
+            continue
+        key = site_id.split("#", 1)[-1]
+        out.setdefault(key, set()).add(channel)
+    print(f"aliases: {len(out)} guide ids from iptv-org", flush=True)
+    return out
+
+
 def channel_country(cid: str, fallback: str | None) -> str:
     base = cid.split("@", 1)[0].strip().lower()
     m = ID_COUNTRY.search(base)
@@ -177,6 +201,19 @@ def build(sources_path: Path, out_dir: Path, workers: int, min_channels: int) ->
                     rec["s"].append(gi)
                 if "i" not in rec and "i" in ch:
                     rec["i"] = ch["i"]
+
+    aliases = load_iptv_org_aliases(config.get("aliases", {}).get("iptv_org_guides"))
+    aliased = 0
+    for bucket in by_country.values():
+        for rec in bucket.values():
+            extra = aliases.get(rec["id"])
+            if extra:
+                rec["a"] = sorted(extra - {rec["id"]})
+                if rec["a"]:
+                    aliased += 1
+                else:
+                    del rec["a"]
+    print(f"aliases: attached to {aliased} channels", flush=True)
 
     generated = dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat()
     index_dir = out_dir / "index"

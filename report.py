@@ -85,7 +85,7 @@ def main(argv: list[str]) -> int:
         pool = pool + load_country(args.index, "intl", cache)
 
         key = id_key(ch["id"])
-        if key and any(id_key(g["id"]) == key for g in pool):
+        if key and any(id_key(g["id"]) == key or any(id_key(a) == key for a in g.get("a", ())) for g in pool):
             buckets["id"].append(f"{ch['name']}  <- {ch['id']}")
             continue
 
