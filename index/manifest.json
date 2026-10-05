@@ -1,0 +1,1104 @@
+{
+ "version": 1,
+ "generated": "2026-10-05T10:33:56+00:00",
+ "ids": {
+  "shards": 256,
+  "ids": {
+   "keys": 36389,
+   "bytes": 5438568,
+   "gzipBytes": 1037922
+  },
+  "names": {
+   "keys": 16070,
+   "bytes": 2467168,
+   "gzipBytes": 445252
+  },
+  "idsShards": {
+   "keys": 36389,
+   "gzipMin": 5255,
+   "gzipMax": 10310,
+   "gzipTotal": 1752433,
+   "gzipAvg": 6845
+  },
+  "namesShards": {
+   "keys": 16070,
+   "gzipMin": 1865,
+   "gzipMax": 5099,
+   "gzipTotal": 775182,
+   "gzipAvg": 3028
+  },
+  "namesAmbiguousDropped": 4708
+ },
+ "countries": {
+  "ae": {
+   "file": "index/ae.json",
+   "channels": 804,
+   "bytes": 111261,
+   "gzipBytes": 12999
+  },
+  "al": {
+   "file": "index/al.json",
+   "channels": 178,
+   "bytes": 17425,
+   "gzipBytes": 2617
+  },
+  "ar": {
+   "file": "index/ar.json",
+   "channels": 82,
+   "bytes": 13147,
+   "gzipBytes": 1848
+  },
+  "at": {
+   "file": "index/at.json",
+   "channels": 144,
+   "bytes": 7225,
+   "gzipBytes": 1697
+  },
+  "au": {
+   "file": "index/au.json",
+   "channels": 354,
+   "bytes": 44587,
+   "gzipBytes": 5603
+  },
+  "ba": {
+   "file": "index/ba.json",
+   "channels": 270,
+   "bytes": 42189,
+   "gzipBytes": 7125
+  },
+  "bb": {
+   "file": "index/bb.json",
+   "channels": 7,
+   "bytes": 963,
+   "gzipBytes": 381
+  },
+  "be": {
+   "file": "index/be.json",
+   "channels": 2211,
+   "bytes": 902639,
+   "gzipBytes": 90606
+  },
+  "bg": {
+   "file": "index/bg.json",
+   "channels": 86,
+   "bytes": 8615,
+   "gzipBytes": 1549
+  },
+  "br": {
+   "file": "index/br.json",
+   "channels": 359,
+   "bytes": 27685,
+   "gzipBytes": 3995
+  },
+  "ca": {
+   "file": "index/ca.json",
+   "channels": 750,
+   "bytes": 98702,
+   "gzipBytes": 11951
+  },
+  "ch": {
+   "file": "index/ch.json",
+   "channels": 751,
+   "bytes": 122383,
+   "gzipBytes": 23835
+  },
+  "cl": {
+   "file": "index/cl.json",
+   "channels": 90,
+   "bytes": 14093,
+   "gzipBytes": 1924
+  },
+  "co": {
+   "file": "index/co.json",
+   "channels": 138,
+   "bytes": 18511,
+   "gzipBytes": 3815
+  },
+  "cr": {
+   "file": "index/cr.json",
+   "channels": 117,
+   "bytes": 19038,
+   "gzipBytes": 2453
+  },
+  "cy": {
+   "file": "index/cy.json",
+   "channels": 94,
+   "bytes": 13051,
+   "gzipBytes": 1562
+  },
+  "cz": {
+   "file": "index/cz.json",
+   "channels": 1087,
+   "bytes": 130394,
+   "gzipBytes": 15783
+  },
+  "de": {
+   "file": "index/de.json",
+   "channels": 272,
+   "bytes": 19397,
+   "gzipBytes": 3772
+  },
+  "dk": {
+   "file": "index/dk.json",
+   "channels": 217,
+   "bytes": 26282,
+   "gzipBytes": 4917
+  },
+  "do": {
+   "file": "index/do.json",
+   "channels": 56,
+   "bytes": 11017,
+   "gzipBytes": 1305
+  },
+  "ec": {
+   "file": "index/ec.json",
+   "channels": 90,
+   "bytes": 14403,
+   "gzipBytes": 1977
+  },
+  "eg": {
+   "file": "index/eg.json",
+   "channels": 238,
+   "bytes": 14211,
+   "gzipBytes": 2720
+  },
+  "es": {
+   "file": "index/es.json",
+   "channels": 529,
+   "bytes": 52806,
+   "gzipBytes": 7917
+  },
+  "fi": {
+   "file": "index/fi.json",
+   "channels": 110,
+   "bytes": 18298,
+   "gzipBytes": 4736
+  },
+  "fr": {
+   "file": "index/fr.json",
+   "channels": 574,
+   "bytes": 46543,
+   "gzipBytes": 7030
+  },
+  "gr": {
+   "file": "index/gr.json",
+   "channels": 318,
+   "bytes": 45265,
+   "gzipBytes": 8537
+  },
+  "hk": {
+   "file": "index/hk.json",
+   "channels": 143,
+   "bytes": 19303,
+   "gzipBytes": 2325
+  },
+  "hr": {
+   "file": "index/hr.json",
+   "channels": 213,
+   "bytes": 28682,
+   "gzipBytes": 3690
+  },
+  "hu": {
+   "file": "index/hu.json",
+   "channels": 193,
+   "bytes": 9757,
+   "gzipBytes": 2220
+  },
+  "id": {
+   "file": "index/id.json",
+   "channels": 269,
+   "bytes": 13639,
+   "gzipBytes": 2727
+  },
+  "ie": {
+   "file": "index/ie.json",
+   "channels": 175,
+   "bytes": 23810,
+   "gzipBytes": 2408
+  },
+  "il": {
+   "file": "index/il.json",
+   "channels": 119,
+   "bytes": 19912,
+   "gzipBytes": 4174
+  },
+  "in": {
+   "file": "index/in.json",
+   "channels": 1719,
+   "bytes": 253018,
+   "gzipBytes": 47729
+  },
+  "intl": {
+   "file": "index/intl.json",
+   "channels": 14073,
+   "bytes": 2418325,
+   "gzipBytes": 449647
+  },
+  "it": {
+   "file": "index/it.json",
+   "channels": 193,
+   "bytes": 25363,
+   "gzipBytes": 6165
+  },
+  "jm": {
+   "file": "index/jm.json",
+   "channels": 25,
+   "bytes": 3074,
+   "gzipBytes": 862
+  },
+  "jp": {
+   "file": "index/jp.json",
+   "channels": 314,
+   "bytes": 40035,
+   "gzipBytes": 5323
+  },
+  "ke": {
+   "file": "index/ke.json",
+   "channels": 157,
+   "bytes": 24385,
+   "gzipBytes": 3500
+  },
+  "kr": {
+   "file": "index/kr.json",
+   "channels": 258,
+   "bytes": 45197,
+   "gzipBytes": 8655
+  },
+  "kz": {
+   "file": "index/kz.json",
+   "channels": 2,
+   "bytes": 276,
+   "gzipBytes": 205
+  },
+  "lt": {
+   "file": "index/lt.json",
+   "channels": 89,
+   "bytes": 4617,
+   "gzipBytes": 1156
+  },
+  "lu": {
+   "file": "index/lu.json",
+   "channels": 312,
+   "bytes": 51554,
+   "gzipBytes": 7706
+  },
+  "lv": {
+   "file": "index/lv.json",
+   "channels": 105,
+   "bytes": 14148,
+   "gzipBytes": 2088
+  },
+  "mn": {
+   "file": "index/mn.json",
+   "channels": 42,
+   "bytes": 4813,
+   "gzipBytes": 1067
+  },
+  "mt": {
+   "file": "index/mt.json",
+   "channels": 192,
+   "bytes": 10097,
+   "gzipBytes": 2366
+  },
+  "mx": {
+   "file": "index/mx.json",
+   "channels": 178,
+   "bytes": 27267,
+   "gzipBytes": 3624
+  },
+  "my": {
+   "file": "index/my.json",
+   "channels": 163,
+   "bytes": 19789,
+   "gzipBytes": 2561
+  },
+  "ng": {
+   "file": "index/ng.json",
+   "channels": 130,
+   "bytes": 18781,
+   "gzipBytes": 2292
+  },
+  "nl": {
+   "file": "index/nl.json",
+   "channels": 159,
+   "bytes": 26153,
+   "gzipBytes": 3153
+  },
+  "no": {
+   "file": "index/no.json",
+   "channels": 161,
+   "bytes": 20053,
+   "gzipBytes": 3404
+  },
+  "nz": {
+   "file": "index/nz.json",
+   "channels": 100,
+   "bytes": 14852,
+   "gzipBytes": 4879
+  },
+  "pa": {
+   "file": "index/pa.json",
+   "channels": 106,
+   "bytes": 17133,
+   "gzipBytes": 2314
+  },
+  "pe": {
+   "file": "index/pe.json",
+   "channels": 164,
+   "bytes": 28245,
+   "gzipBytes": 5504
+  },
+  "ph": {
+   "file": "index/ph.json",
+   "channels": 258,
+   "bytes": 16460,
+   "gzipBytes": 3487
+  },
+  "pk": {
+   "file": "index/pk.json",
+   "channels": 8,
+   "bytes": 553,
+   "gzipBytes": 263
+  },
+  "pl": {
+   "file": "index/pl.json",
+   "channels": 636,
+   "bytes": 33746,
+   "gzipBytes": 5775
+  },
+  "pt": {
+   "file": "index/pt.json",
+   "channels": 178,
+   "bytes": 48569,
+   "gzipBytes": 3794
+  },
+  "ro": {
+   "file": "index/ro.json",
+   "channels": 477,
+   "bytes": 49866,
+   "gzipBytes": 6484
+  },
+  "rs": {
+   "file": "index/rs.json",
+   "channels": 721,
+   "bytes": 169897,
+   "gzipBytes": 59285
+  },
+  "ru": {
+   "file": "index/ru.json",
+   "channels": 1,
+   "bytes": 325,
+   "gzipBytes": 232
+  },
+  "sa": {
+   "file": "index/sa.json",
+   "channels": 138,
+   "bytes": 17035,
+   "gzipBytes": 3339
+  },
+  "se": {
+   "file": "index/se.json",
+   "channels": 126,
+   "bytes": 17771,
+   "gzipBytes": 3261
+  },
+  "sg": {
+   "file": "index/sg.json",
+   "channels": 165,
+   "bytes": 9731,
+   "gzipBytes": 2124
+  },
+  "sk": {
+   "file": "index/sk.json",
+   "channels": 217,
+   "bytes": 21801,
+   "gzipBytes": 3587
+  },
+  "sv": {
+   "file": "index/sv.json",
+   "channels": 476,
+   "bytes": 75089,
+   "gzipBytes": 8219
+  },
+  "th": {
+   "file": "index/th.json",
+   "channels": 76,
+   "bytes": 3833,
+   "gzipBytes": 990
+  },
+  "tr": {
+   "file": "index/tr.json",
+   "channels": 385,
+   "bytes": 48889,
+   "gzipBytes": 8780
+  },
+  "uk": {
+   "file": "index/uk.json",
+   "channels": 486,
+   "bytes": 68122,
+   "gzipBytes": 8116
+  },
+  "us": {
+   "file": "index/us.json",
+   "channels": 1307,
+   "bytes": 177777,
+   "gzipBytes": 26887
+  },
+  "uy": {
+   "file": "index/uy.json",
+   "channels": 521,
+   "bytes": 62436,
+   "gzipBytes": 9817
+  },
+  "vn": {
+   "file": "index/vn.json",
+   "channels": 151,
+   "bytes": 22666,
+   "gzipBytes": 4902
+  },
+  "za": {
+   "file": "index/za.json",
+   "channels": 145,
+   "bytes": 20811,
+   "gzipBytes": 2621
+  }
+ },
+ "sources": [
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_AE1.xml.gz",
+   "country": "ae",
+   "channels": 804
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_AL1.xml.gz",
+   "country": "al",
+   "channels": 178
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_ALJAZEERA1.xml.gz",
+   "country": null,
+   "channels": 2
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_AR1.xml.gz",
+   "country": "ar",
+   "channels": 82
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_ASIANTELEVISION1.xml.gz",
+   "country": null,
+   "channels": 54
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_AT1.xml.gz",
+   "country": "at",
+   "channels": 144
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_AU1.xml.gz",
+   "country": "au",
+   "channels": 354
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_AUDACY1.xml.gz",
+   "country": null,
+   "channels": 71
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_BA1.xml.gz",
+   "country": "ba",
+   "channels": 254
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_BB1.xml.gz",
+   "country": "bb",
+   "channels": 7
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_BE2.xml.gz",
+   "country": "be",
+   "channels": 571
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_BEIN1.xml.gz",
+   "country": null,
+   "channels": 80
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_BG1.xml.gz",
+   "country": "bg",
+   "channels": 86
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_BR1.xml.gz",
+   "country": "br",
+   "channels": 266
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_BR2.xml.gz",
+   "country": "br",
+   "channels": 97
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_CA2.xml.gz",
+   "country": "ca",
+   "channels": 696
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_CH1.xml.gz",
+   "country": "ch",
+   "channels": 751
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_CL1.xml.gz",
+   "country": "cl",
+   "channels": 90
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_CO1.xml.gz",
+   "country": "co",
+   "channels": 138
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_CR1.xml.gz",
+   "country": "cr",
+   "channels": 117
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_CY1.xml.gz",
+   "country": "cy",
+   "channels": 94
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_CZ1.xml.gz",
+   "country": "cz",
+   "channels": 1087
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_DE1.xml.gz",
+   "country": "de",
+   "channels": 266
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_DELUXEMUSIC1.xml.gz",
+   "country": null,
+   "channels": 5
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_DIRECTVSPORTS1.xml.gz",
+   "country": null,
+   "channels": 4
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_DISTROTV1.xml.gz",
+   "country": null,
+   "channels": 90
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_DK1.xml.gz",
+   "country": "dk",
+   "channels": 217
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_DO1.xml.gz",
+   "country": "do",
+   "channels": 56
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_DRAFTKINGS1.xml.gz",
+   "country": null,
+   "channels": 1
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_EC1.xml.gz",
+   "country": "ec",
+   "channels": 90
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_EG1.xml.gz",
+   "country": "eg",
+   "channels": 238
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_ES1.xml.gz",
+   "country": "es",
+   "channels": 373
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_FANDUEL1.xml.gz",
+   "country": null,
+   "channels": 45
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_FI1.xml.gz",
+   "country": "fi",
+   "channels": 110
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_FR1.xml.gz",
+   "country": "fr",
+   "channels": 574
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_GR1.xml.gz",
+   "country": "gr",
+   "channels": 318
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_HK1.xml.gz",
+   "country": "hk",
+   "channels": 143
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_HR1.xml.gz",
+   "country": "hr",
+   "channels": 213
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_HU1.xml.gz",
+   "country": "hu",
+   "channels": 193
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_ID1.xml.gz",
+   "country": "id",
+   "channels": 269
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_IE1.xml.gz",
+   "country": "ie",
+   "channels": 175
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_IL1.xml.gz",
+   "country": "il",
+   "channels": 119
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_IN1.xml.gz",
+   "country": "in",
+   "channels": 1166
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_IN2.xml.gz",
+   "country": "in",
+   "channels": 54
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_IN4.xml.gz",
+   "country": "in",
+   "channels": 557
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_IT1.xml.gz",
+   "country": "it",
+   "channels": 193
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_JM1.xml.gz",
+   "country": "jm",
+   "channels": 25
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_JP1.xml.gz",
+   "country": "jp",
+   "channels": 133
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_JP2.xml.gz",
+   "country": "jp",
+   "channels": 244
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_KE1.xml.gz",
+   "country": "ke",
+   "channels": 157
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_KR1.xml.gz",
+   "country": "kr",
+   "channels": 258
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_KZ1.xml.gz",
+   "country": "kz",
+   "channels": 2
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_LT1.xml.gz",
+   "country": "lt",
+   "channels": 89
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_LU1.xml.gz",
+   "country": "lu",
+   "channels": 312
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_LV1.xml.gz",
+   "country": "lv",
+   "channels": 105
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_MN1.xml.gz",
+   "country": "mn",
+   "channels": 42
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_MT1.xml.gz",
+   "country": "mt",
+   "channels": 192
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_MUSICBOX1.xml.gz",
+   "country": null,
+   "channels": 10
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_MX1.xml.gz",
+   "country": "mx",
+   "channels": 178
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_MY1.xml.gz",
+   "country": "my",
+   "channels": 163
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_NG1.xml.gz",
+   "country": "ng",
+   "channels": 130
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_NL1.xml.gz",
+   "country": "nl",
+   "channels": 159
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_NO1.xml.gz",
+   "country": "no",
+   "channels": 161
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_NZ1.xml.gz",
+   "country": "nz",
+   "channels": 100
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_PA1.xml.gz",
+   "country": "pa",
+   "channels": 106
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_PE1.xml.gz",
+   "country": "pe",
+   "channels": 164
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_PEACOCK1.xml.gz",
+   "country": null,
+   "channels": 31
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_PH1.xml.gz",
+   "country": "ph",
+   "channels": 134
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_PH2.xml.gz",
+   "country": "ph",
+   "channels": 130
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_PK1.xml.gz",
+   "country": "pk",
+   "channels": 8
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_PL1.xml.gz",
+   "country": "pl",
+   "channels": 636
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_PLEX1.xml.gz",
+   "country": null,
+   "channels": 693
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_PT1.xml.gz",
+   "country": "pt",
+   "channels": 178
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_RAKUTEN1.xml.gz",
+   "country": null,
+   "channels": 1640
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_RALLY_TV1.xml.gz",
+   "country": null,
+   "channels": 1
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_RO1.xml.gz",
+   "country": "ro",
+   "channels": 370
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_RO2.xml.gz",
+   "country": "ro",
+   "channels": 148
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_RS1.xml.gz",
+   "country": "rs",
+   "channels": 721
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_SA1.xml.gz",
+   "country": "sa",
+   "channels": 97
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_SA2.xml.gz",
+   "country": "sa",
+   "channels": 41
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_SE1.xml.gz",
+   "country": "se",
+   "channels": 126
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_SG1.xml.gz",
+   "country": "sg",
+   "channels": 165
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_SK1.xml.gz",
+   "country": "sk",
+   "channels": 217
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_SPORTKLUB1.xml.gz",
+   "country": null,
+   "channels": 16
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_SSPORTPLUS1.xml.gz",
+   "country": null,
+   "channels": 1
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_SV1.xml.gz",
+   "country": "sv",
+   "channels": 476
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_TBNPLUS1.xml.gz",
+   "country": null,
+   "channels": 17
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_TH1.xml.gz",
+   "country": "th",
+   "channels": 76
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_THESPORTPLUS1.xml.gz",
+   "country": null,
+   "channels": 3
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_TR1.xml.gz",
+   "country": "tr",
+   "channels": 178
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_TR3.xml.gz",
+   "country": "tr",
+   "channels": 287
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_UK1.xml.gz",
+   "country": "uk",
+   "channels": 486
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_US2.xml.gz",
+   "country": "us",
+   "channels": 769
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_US_LOCALS1.xml.gz",
+   "country": null,
+   "channels": 4456
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_US_SPORTS1.xml.gz",
+   "country": null,
+   "channels": 267
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_UY1.xml.gz",
+   "country": "uy",
+   "channels": 521
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_VN1.xml.gz",
+   "country": "vn",
+   "channels": 151
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_VOA1.xml.gz",
+   "country": null,
+   "channels": 10
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_WHALETVPLUS1.xml.gz",
+   "country": null,
+   "channels": 139
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_ZA1.xml.gz",
+   "country": "za",
+   "channels": 145
+  },
+  {
+   "provider": "epgshare01",
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_viva-russia.ru.xml.gz",
+   "country": null,
+   "channels": 1
+  },
+  {
+   "provider": "mjh",
+   "url": "https://i.mjh.nz/PlutoTV/all.xml.gz",
+   "country": null,
+   "channels": 2955
+  },
+  {
+   "provider": "mjh",
+   "url": "https://i.mjh.nz/SamsungTVPlus/all.xml.gz",
+   "country": null,
+   "channels": 2637
+  },
+  {
+   "provider": "mjh",
+   "url": "https://i.mjh.nz/Plex/all.xml.gz",
+   "country": null,
+   "channels": 2857
+  },
+  {
+   "provider": "mjh",
+   "url": "https://i.mjh.nz/Roku/all.xml.gz",
+   "country": null,
+   "channels": 657
+  },
+  {
+   "provider": "open-epg",
+   "url": "https://www.open-epg.com/files/spain1.xml.gz",
+   "country": "es",
+   "channels": 188
+  }
+ ]
+}
